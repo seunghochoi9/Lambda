@@ -1,5 +1,6 @@
 package user;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -34,6 +35,7 @@ public class UserView {
                     break;
                 case "3":
                     System.out.println("3-ID 검색");
+                    System.out.println(controller.test());
                     System.out.println(controller.getOne(scanner));
                     break;
                 case "4":
@@ -46,6 +48,11 @@ public class UserView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
+                    list<User> users = controller.findUsers();
+                    users.forEach(i)->{
+                        System.out.printf("아이디: %s, 회원정보: %s", i);
+                    });
+
                     Map<String, ?> users = controller.getUserMap();
                     users.forEach((k,v)->{
                         System.out.printf("아이디: %s, 회원정보: %s", k, v);
@@ -68,7 +75,6 @@ public class UserView {
                     String numberOfUsers = controller.count();
                     System.out.println("회원수 "+numberOfUsers);
                     break;
-
             }
 
         }

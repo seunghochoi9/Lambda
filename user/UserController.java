@@ -91,4 +91,7 @@ public class UserController {
         return service.getUserMap();
     }
 
+    public String test() {
+        return service.test();
+    }
 }

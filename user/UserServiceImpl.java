@@ -11,14 +11,17 @@ import java.util.stream.IntStream;
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
     private static UserServiceImpl instance = new UserServiceImpl();
-    Map<String, User> users;
-
-    private UserServiceImpl() {
-        this.users = new HashMap<>();
-    }
 
     public static UserServiceImpl getInstance() {
         return instance;
+    }
+
+    Map<String, User> users;
+    UserRepository userRepository;
+
+    private UserServiceImpl() {
+        this.users = new HashMap<>();
+        this.userRepository = UserRepository.getInstance();
     }
 
     @Override
@@ -133,5 +136,10 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                         .build()));
         return users.size() + "개 더미값 추가";
 
+    }
+
+    @Override
+    public String test() {
+        return userRepository.test();
     }
 }

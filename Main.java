@@ -5,6 +5,7 @@ import crawler.CrawlerView;
 import user.UserView;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -41,5 +42,4 @@ public class Main {
             }
         }
     }
-
 }
