@@ -4,6 +4,7 @@ import common.AbstractService;
 import common.UtilServiceImpl;
 import enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -142,4 +143,11 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     public String test() {
         return userRepository.test();
     }
+
+    @Override
+    public List<?> findUsers() throws SQLException {
+        return userRepository.findUsers();
+    }
+
+
 }

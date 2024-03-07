@@ -1,43 +1,37 @@
-package user;
+package article;
+
+import user.UserServiceImpl;
 
 import java.sql.*;
 import java.util.List;
-import java.util.Map;
 
-public class UserRepository {
+public class ArticleRepository {
 
-    private static UserRepository instance;
+    private static ArticleRepository instance;
 
     static {
         try {
-            instance = new UserRepository();
+            instance = new ArticleRepository();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static UserRepository getInstance() {
+    public static ArticleRepository getInstance() {
         return instance;
     }
 
-    private Connection connection;
+    Connection connection;
 
-    private UserRepository() throws SQLException {
-        connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/erichgammadb",
-                "erichgamma",
-                "erichgammadb");
+    private ArticleRepository() throws SQLException {
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erichgammadb", "erichgamma", "erichgammadb");
+
     }
 
-
-    public String test() {
-        return "UserRepository 연결";
-    }
-
-    public List<?> findUsers() throws SQLException {
-        String sql = "select * from board";
+    public List<?> getArticle() throws SQLException {
+        String sql = "select * from articles";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet resultSet = pstmt.executeQuery();
+        ResultSet resultSet = pstmt.executeQuery("select * from articles");
         if(resultSet.next()){
             do{
                 System.out.println("-- inner ---");

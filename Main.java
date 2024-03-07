@@ -1,20 +1,22 @@
 import account.AccountView;
+import article.ArticleView;
 import board.BoardView;
 import crawler.CrawlerService;
 import crawler.CrawlerView;
 import user.UserView;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("0-Exit 1-회원관리 2-{} 3-게시판 4-Crawler 5-사용자관리(맵) 6-은행");
+            System.out.println("0-Exit 1-회원관리 2-{} 3-게시판 4-Crawler 5-사용자관리(맵) 6-은행 7-Article");
             switch (scanner.next()) {
                 case "0":
                     System.out.println("Exit");
@@ -35,6 +37,9 @@ public class Main {
                     break;
                 case "6":
                     AccountView.main(scanner);
+                    break;
+                case "7":
+                    ArticleView.main(scanner);
                     break;
 
                 default:
