@@ -17,4 +17,8 @@ public interface UserService {
     String test();
 
     List<?> findUsers() throws SQLException;
+
+    String createTable() throws SQLException;
+
+    String delTable() throws SQLException;
 }

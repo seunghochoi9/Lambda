@@ -17,8 +17,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         return instance;
     }
 
-    Map<String, User> users;
-    UserRepository userRepository;
+    private Map<String, User> users;
+    private UserRepository userRepository;
 
     private UserServiceImpl() {
         this.users = new HashMap<>();
@@ -26,8 +26,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public Messenger save(User user) {
-        users.put(user.getUsername(), user);
+    public Messenger save(User user) throws SQLException {
+        userRepository.save(user);
         return Messenger.SUCCESS;
     }
 
@@ -147,6 +147,16 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public List<?> findUsers() throws SQLException {
         return userRepository.findUsers();
+    }
+
+    @Override
+    public String createTable() throws SQLException {
+        return userRepository.createTable();
+    }
+
+    @Override
+    public String delTable() throws SQLException {
+        return userRepository.delTable();
     }
 
 

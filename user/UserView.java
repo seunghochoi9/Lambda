@@ -11,23 +11,27 @@ public class UserView {
         String msg = controller.addUsers();
         System.out.println(" addUsers 결과 : "+msg);
         while(true){
-            System.out.println("[사용자메뉴] 0-종료\n " +
+            System.out.println("[사용자메뉴]\n" +
+                    "x-Exit\n " +
                     "1-회원가입\n " +
                     "2-로그인\n " +
                     "3-ID검색\n " +
                     "4-비번변경\n" +
                     "5-탈퇴\n " +
-                    "6-회원목록\n " +
+                    "ls-회원목록\n " +
                     "7-이름검색\n" +
                     "8-직업검색\n" +
-                    "9-회원수");
+                    "9-회원수\n" +
+                    "touch-테이블생성\n" +
+                    "rm-테이블삭제\n" +
+                    "");
             switch (scanner.next()){
-                case "0":
+                case "x":
                     System.out.println("종료");return;
                 case "1":
                     System.out.println("1-회원가입");
-                    controller.save(scanner);
-                    System.out.println("회원가입 결과 : ");
+                    System.out.println("ID, 비밀번호, 이름, 전화번호, 직업");
+                    System.out.println("회원가입 결과 : "+ controller.save(scanner));
                     break;
                 case "2":
                     System.out.println("2-로그인");
@@ -49,7 +53,7 @@ public class UserView {
                     System.out.println("5-탈퇴");
                     System.out.println(controller.delete(scanner));
                     break;
-                case "6":
+                case "ls":
                     System.out.println("6-회원목록");
                     List<?> users = controller.findUsers();
 //                    users.forEach(i->{
@@ -77,6 +81,16 @@ public class UserView {
                     System.out.println("9-회원수");
                     String numberOfUsers = controller.count();
                     System.out.println("회원수 "+numberOfUsers);
+                    break;
+                case "touch":
+                    System.out.println("touch-테이블생성");
+
+                    System.out.println(controller.createTable());
+                    break;
+                case "rm":
+                    System.out.println("rm-테이블삭제");
+
+                    System.out.println(controller.delTable());
                     break;
             }
 

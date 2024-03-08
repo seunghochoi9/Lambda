@@ -3,11 +3,12 @@ package article;
 import user.UserServiceImpl;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleRepository {
 
-    private static ArticleRepository instance;
+    private final static ArticleRepository instance;
 
     static {
         try {
@@ -21,34 +22,34 @@ public class ArticleRepository {
         return instance;
     }
 
-    Connection connection;
+    private Connection conn;
 
     private ArticleRepository() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/erichgammadb", "erichgamma", "erichgammadb");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erichgammadb", "erichgamma", "erichgammadb");
 
     }
 
-    public List<?> getArticle() throws SQLException {
+    public List<?> findAll() throws SQLException {
+        List<Article> ls = new ArrayList<>();
         String sql = "select * from articles";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet resultSet = pstmt.executeQuery("select * from articles");
-        if(resultSet.next()){
-            do{
-                System.out.println("-- inner ---");
-                System.out.printf("ID: %d\t Title: %s\t Content: %s\t Writer: %s\n",
-                        resultSet.getInt("id"),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4));
-                System.out.println();
-            }while(resultSet.next());
-
-        }else{
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery("select * from articles");
+        if (rs.next()) {
+            do {
+                ls.add(Article.builder()
+                        .id(rs.getLong("id"))
+                        .title(rs.getString("title"))
+                        .content(rs.getString("content"))
+                        .writer(rs.getString("writer"))
+                        .build());
+            } while (rs.next());
+        } else {
             System.out.println("데이터가 없습니다.");
         }
-        resultSet.close();
+        rs.close();
         pstmt.close();
-        connection.close();
-        return null;
+        conn.close();
+        return ls;
     }
+
 }

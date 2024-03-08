@@ -5,14 +5,15 @@ import java.util.List;
 
 public class ArticleController {
 
-    ArticleServiceImpl service;
+    private ArticleServiceImpl service;
 
     public ArticleController() {
         this.service = ArticleServiceImpl.getInstance();
     }
 
 
-    public List<?> getArticle() throws SQLException {
-        return service.getArticle();
+    public List<?> findAll() throws SQLException {
+        return service.findAll();
     }
+
 }

@@ -1,22 +1,58 @@
 package article;
 
+import common.AbstractService;
+import enums.Messenger;
+
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
-public class ArticleServiceImpl implements ArticleService {
-    private static ArticleServiceImpl instance = new ArticleServiceImpl();
+public class ArticleServiceImpl extends AbstractService implements ArticleService {
+    private final static ArticleServiceImpl instance = new ArticleServiceImpl();
+
     public static ArticleServiceImpl getInstance() {
         return instance;
     }
 
-    ArticleRepository rp;
+    private ArticleRepository repository;
 
     private ArticleServiceImpl() {
-        this.rp = ArticleRepository.getInstance();
+        this.repository = ArticleRepository.getInstance();
+    }
+
+
+    @Override
+    public Messenger save(Object o) {
+        return null;
     }
 
     @Override
-    public List<?> getArticle() throws SQLException {
-        return rp.getArticle();
+    public List findAll() throws SQLException {
+        return repository.findAll();
+    }
+
+    @Override
+    public Optional findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public String count() {
+        return null;
+    }
+
+    @Override
+    public Optional getOne(String id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public String delete(Object o) {
+        return null;
+    }
+
+    @Override
+    public Boolean existsById(Long id) {
+        return null;
     }
 }

@@ -1,4 +1,5 @@
 package user;
+
 import enums.Messenger;
 
 import java.sql.SQLException;
@@ -19,13 +20,13 @@ public class UserController {
         return service.addUsers();
     }
 
-    public Messenger save(Scanner scanner) {
+    public Messenger save(Scanner scanner) throws SQLException {
         service.save(User.builder()
                 .username(scanner.next())
-                .ssn(scanner.next())
-                .address(scanner.next())
-                .phoneNumber(scanner.next())
                 .password(scanner.next())
+                .name(scanner.next())
+                .phone(scanner.next())
+                .job(scanner.next())
                 .build());
         return Messenger.SUCCESS;
     }
@@ -48,9 +49,7 @@ public class UserController {
     public String updatePassword(Scanner scanner) {
         return service.updatePassword(User.builder()
                 .username(scanner.next())
-                .ssn(scanner.next())
-                .address(scanner.next())
-                .phoneNumber(scanner.next())
+                .phone(scanner.next())
                 .password(scanner.next())
                 .build());
     }
@@ -85,10 +84,12 @@ public class UserController {
     public String count() {
         return service.count();
     }
+
     public Optional<User> getOne(Scanner scanner) {
         return service.getOne(scanner.next());
     }
-    public Map<String, ?> getUserMap(){
+
+    public Map<String, ?> getUserMap() {
         return service.getUserMap();
     }
 
@@ -99,5 +100,13 @@ public class UserController {
 
     public List<?> findUsers() throws SQLException {
         return service.findUsers();
+    }
+
+    public String createTable() throws SQLException {
+        return service.createTable();
+    }
+
+    public String delTable() throws SQLException {
+        return service.delTable();
     }
 }

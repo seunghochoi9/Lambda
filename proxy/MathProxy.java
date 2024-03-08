@@ -22,8 +22,7 @@ public class MathProxy {
     // round
     public static Function<Double, Long> roundDouble = Math::round;
 
-    //Integer.parseInt
-//    public static Function<String, Integer> integerInt = Integer.parseInt();
+
 
 
 }
