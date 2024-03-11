@@ -20,13 +20,15 @@ public class UserController {
         return service.addUsers();
     }
 
-    public String save(Scanner scanner) {
+    public Messenger save(Scanner scanner) throws SQLException {
         service.save(User.builder()
                 .username(scanner.next())
-                .phone(scanner.next())
                 .password(scanner.next())
+                .name(scanner.next())
+                .phone(scanner.next())
+                .job(scanner.next())
                 .build());
-        return "회원가입 성공";
+        return Messenger.SUCCESS;
     }
 
     public List<User> findAll() {
@@ -82,23 +84,25 @@ public class UserController {
     public String count() {
         return service.count();
     }
+
     public Optional<User> getOne(Scanner scanner) {
         return service.getOne(scanner.next());
     }
-    public Map<String, ?> getUserMap(){
+
+    public Map<String, ?> getUserMap() {
         return service.getUserMap();
     }
 
-
-    public String test() {
-        return service.test();
-    }
 
     public List<?> findUsers() throws SQLException {
         return service.findUsers();
     }
 
-    public Messenger createUsers() throws SQLException {
-        return service.createUsers();
+    public Messenger createTable() throws SQLException {
+        return service.createTable();
+    }
+
+    public String delTable() throws SQLException {
+        return service.delTable();
     }
 }

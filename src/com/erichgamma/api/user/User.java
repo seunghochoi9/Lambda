@@ -1,4 +1,5 @@
 package com.erichgamma.api.user;
+
 import lombok.*;
 
 
@@ -17,11 +18,9 @@ public class User {
     private double weight;
 
     @Builder(builderMethodName = "builder")
-    public User(Long id,String username, String password,
-                String name, String phone,
-                String job,
+    public User(String username, String password,
+                String name, String phone, String job,
                 double height, double weight) {
-        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
@@ -42,6 +41,7 @@ public class User {
                 ", password='" + password + '\n' +
                 ", name='" + name + '\n' +
                 ", phoneNumber='" + phone + '\n' +
+                ", address='" + addressId + '\n' +
                 ", job='" + job + '\n' +
                 '}';
     }
