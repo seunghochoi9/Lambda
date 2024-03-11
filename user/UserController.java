@@ -102,7 +102,7 @@ public class UserController {
         return service.findUsers();
     }
 
-    public String createTable() throws SQLException {
+    public Messenger createTable() throws SQLException {
         return service.createTable();
     }
 

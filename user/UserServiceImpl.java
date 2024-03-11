@@ -150,7 +150,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
-    public String createTable() throws SQLException {
+    public Messenger createTable() throws SQLException {
         return userRepository.createTable();
     }
 

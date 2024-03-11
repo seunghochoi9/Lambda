@@ -84,12 +84,10 @@ public class UserView {
                     break;
                 case "touch":
                     System.out.println("touch-테이블생성");
-
                     System.out.println(controller.createTable());
                     break;
                 case "rm":
                     System.out.println("rm-테이블삭제");
-
                     System.out.println(controller.delTable());
                     break;
             }

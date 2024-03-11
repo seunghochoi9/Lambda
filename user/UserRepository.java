@@ -61,28 +61,26 @@ public class UserRepository {
         return null;
     }
 
-    public String createTable() throws SQLException {
-        String msg = "";
-        String Sql = "CREATE TABLE test (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(20) NOT NULL);";
+    public Messenger createTable() throws SQLException {
+        String Sql = "CREATE TABLE test (id INT AUTO_INCREMENT PRIMARY KEY, " +
+                "username VARCHAR(20) NOT NULL," +
+                "name VARCHAR(20)," +
+                "phone VARCHAR(20)," +
+                "job VARCHAR(20)," +
+                "height VARCHAR(20)," +
+                "weight VARCHAR(20));";
         PreparedStatement pstmt = connection.prepareStatement(Sql);
-        if (pstmt.executeUpdate() == 0) {
-            msg = "테이블생성 완료";
-        } else {
-            msg = "Error";
-        }
-        return msg;
+        pstmt.close();
+        connection.close();
+        return (pstmt.executeUpdate() == 0) ? "SUCCESS" : "FAIL" ;
     }
 
     public String delTable() throws SQLException {
-        String msg = "";
         String Sql = "DROP TABLE test;";
         PreparedStatement pstmt = connection.prepareStatement(Sql);
-        if (pstmt.executeUpdate() == 0) {
-            msg = "테이블삭제 완료";
-        } else {
-            msg = "Error";
-        }
-        return msg;
+        pstmt.close();
+        connection.close();
+        return (pstmt.executeUpdate() == 0) ? "SUCCESS" : "FAIL" ;
     }
 
     public Messenger save(User user) throws SQLException {
