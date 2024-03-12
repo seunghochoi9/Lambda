@@ -1,4 +1,4 @@
-package board;
+package com.erichgamma.api.board;
 
 import com.erichgamma.api.common.UtilService;
 import com.erichgamma.api.common.UtilServiceImpl;

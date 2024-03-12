@@ -40,7 +40,6 @@ public class UserView {
                     break;
                 case "3":
                     System.out.println("3-ID 검색");
-                    System.out.println(controller.test());
 
 
                     System.out.println(controller.getOne(scanner));

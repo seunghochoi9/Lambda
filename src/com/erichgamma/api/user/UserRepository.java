@@ -34,7 +34,7 @@ public class UserRepository {
     }
 
     public List<?> findUsers() throws SQLException {
-        String sql = "select * from board";
+        String sql = "select * from com.erichgamma.api.board";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         ResultSet resultSet = pstmt.executeQuery();
         if (resultSet.next()) {
@@ -68,15 +68,15 @@ public class UserRepository {
         PreparedStatement pstmt = connection.prepareStatement(Sql);
         pstmt.close();
         connection.close();
-        return (pstmt.executeUpdate() == 0) ? Messenger.SUCCESS : Messenger.FAIL ;
+        return (pstmt.executeUpdate() >= 0) ? Messenger.SUCCESS : Messenger.FAIL ;
     }
 
-    public String delTable() throws SQLException {
+    public Messenger delTable() throws SQLException {
         String Sql = "DROP TABLE test;";
         PreparedStatement pstmt = connection.prepareStatement(Sql);
         pstmt.close();
         connection.close();
-        return (pstmt.executeUpdate() == 0) ? "SUCCESS" : "FAIL" ;
+        return (pstmt.executeUpdate() >= 0) ? Messenger.SUCCESS : Messenger.FAIL ;
     }
 
     public Messenger save(User user) throws SQLException {
@@ -94,6 +94,6 @@ public class UserRepository {
         pstmt.executeUpdate();
 
         System.out.println("회원가입 완료!");
-        return null;
+        return (pstmt.executeUpdate() >= 0) ? Messenger.SUCCESS : Messenger.FAIL ;
     }
 }
