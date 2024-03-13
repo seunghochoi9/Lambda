@@ -16,6 +16,12 @@ public class UserController {
         this.service = UserServiceImpl.getInstance();
     }
 
+    private static UserController instance = new UserController();
+
+    public static UserController getInstance() {
+        return instance;
+    }
+
     public String addUsers() {
         return service.addUsers();
     }

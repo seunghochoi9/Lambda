@@ -54,7 +54,8 @@ public enum Navigation {
     public static Boolean navigate(Scanner scanner){
         System.out.println("0-Exit 1-UserView 2-BoardView 3-AccountView 4-CrawlerView");
         String str = scanner.next();
-        return Stream.of(values()).filter(i -> i.name.equals(str)).findAny().orElse(ERROR).predicate.test(scanner);
+        return Stream.of(values()).filter(i -> i.name.equals(str))
+                .findAny().orElse(ERROR).predicate.test(scanner);
     }
 
 
