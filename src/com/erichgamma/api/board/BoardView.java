@@ -4,10 +4,11 @@ import com.erichgamma.api.common.UtilService;
 import com.erichgamma.api.common.UtilServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class BoardView {
-    public static void main() {
+    public static void main(Scanner scanner) {
         List<Board> articles = new ArrayList<>();
         UtilService util = UtilServiceImpl.getInstance();
 

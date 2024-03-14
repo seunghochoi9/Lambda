@@ -1,7 +1,6 @@
 package com.erichgamma.api.enums;
 
 
-import com.erichgamma.api.user.User;
 import com.erichgamma.api.user.UserController;
 
 import java.sql.SQLException;
@@ -9,8 +8,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import static java.time.chrono.JapaneseEra.values;
-public enum UserRouter {
+public enum UserRouterOfPredicate {
     EXIT("exit", i -> {
         System.out.println("Exit");
         return false;
@@ -87,7 +85,7 @@ public enum UserRouter {
     UserController controller;
 
 
-    UserRouter(String name, Predicate<Scanner> predicate) {
+    UserRouterOfPredicate(String name, Predicate<Scanner> predicate) {
         this.name = name;
         this.predicate = predicate;
         this.controller = UserController.getInstance();

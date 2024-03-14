@@ -1,7 +1,7 @@
 package com.erichgamma.api.enums;
 
-
 import com.erichgamma.api.account.AccountView;
+import com.erichgamma.api.board.BoardView;
 import com.erichgamma.api.crawler.CrawlerView;
 import com.erichgamma.api.user.UserView;
 
@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public enum Navigation {
+public enum NavigationOfPredicate {
     EXIT("exit", i -> {
         System.out.println("Exit");
         return false;
@@ -24,6 +24,12 @@ public enum Navigation {
         }
         return true;
     }),
+
+    BOARD("Board", i -> {
+        BoardView.main(i);
+        return true;
+    }),
+
 
     ACCOUNT("account", i -> {
         AccountView.main(i);
@@ -38,16 +44,17 @@ public enum Navigation {
         }
         return true;
     }),
-    ERROR("error", i ->{
+    NAVIGATION_ERROR("error", i ->{
         System.out.println("input error");
         return true;
     })
     ;
 
-    Navigation(String name, Predicate<Scanner> predicate) {
+    NavigationOfPredicate(String name, Predicate<Scanner> predicate) {
         this.name = name;
         this.predicate = predicate;
     }
+
     private final String name;
     private final Predicate<Scanner> predicate;
 
@@ -55,7 +62,7 @@ public enum Navigation {
         System.out.println("0-Exit 1-UserView 2-BoardView 3-AccountView 4-CrawlerView");
         String str = scanner.next();
         return Stream.of(values()).filter(i -> i.name.equals(str))
-                .findAny().orElse(ERROR).predicate.test(scanner);
+                .findAny().orElse(NAVIGATION_ERROR).predicate.test(scanner);
     }
 
 
