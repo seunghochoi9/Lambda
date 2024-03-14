@@ -1,9 +1,15 @@
 package com.erichgamma.api.menu;
 
 public class MenuController {
-    MenuService service = new MenuService();
+    MenuServiceImpl service;
 
-    public MenuController(MenuService service) {
-        this.service = new MenuService();
+    public MenuController() {
+        this.service = MenuServiceImpl.getInstance();
+    }
+
+    private static MenuController instance = new MenuController();
+
+    public static MenuController getInstance() {
+        return instance;
     }
 }

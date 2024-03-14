@@ -1,4 +1,4 @@
 package com.erichgamma.api.menu;
 
-public class MenuService {
+public interface MenuService {
 }
