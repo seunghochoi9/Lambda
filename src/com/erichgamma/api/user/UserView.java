@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class UserView {
     public static void main(Scanner scanner) throws SQLException {
         while (UserRouterOfPredicate.routing(scanner));
-//        while (UserRouterOfFunction.routing(scanner));
+        System.out.printf("유저뷰 입장");
 
     }
 }

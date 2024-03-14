@@ -1,12 +1,15 @@
 package com.erichgamma.api.product;
 
+import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void systemOut() {
         Item s = new Item();
         String s3 = s.systemOut();
@@ -15,7 +18,7 @@ class ItemTest {
         Assertions.assertEquals(s.systemOut(), s2);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void add() {
     }
 }
