@@ -13,9 +13,8 @@ public class BoardView {
 
         for(int i=0;i<5;i++){
             articles.add(Board.builder()
-                    .title(util.createRandomTitle())
-                    .content(util.createRandomContent())
-                    .writer(util.createRandomName()).build());
+                    .boardType(util.createRandomTitle())
+                    .boardName(util.createRandomName()).build());
             System.out.println(articles.get(i));
         }
 

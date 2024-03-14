@@ -1,7 +1,14 @@
+<<<<<<< HEAD:user/UserController.java
+package user;
+
+import enums.Messenger;
+
+=======
 package com.erichgamma.api.user;
 
 import com.erichgamma.api.enums.Messenger;
 
+>>>>>>> develop-1.1:com/erichgamma/api/user/UserController.java
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +106,13 @@ public class UserController {
         return service.getUserMap();
     }
 
+<<<<<<< HEAD:user/UserController.java
+    public String test() {
+        return service.test();
+    }
+
+=======
+>>>>>>> develop-1.1:com/erichgamma/api/user/UserController.java
 
     public List<?> findUsers() throws SQLException {
         return service.findUsers();
@@ -108,7 +122,11 @@ public class UserController {
         return service.createTable();
     }
 
+<<<<<<< HEAD:user/UserController.java
+    public String delTable() throws SQLException {
+=======
     public Messenger delTable() throws SQLException {
+>>>>>>> develop-1.1:com/erichgamma/api/user/UserController.java
         return service.delTable();
     }
 }

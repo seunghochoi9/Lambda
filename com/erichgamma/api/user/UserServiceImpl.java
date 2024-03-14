@@ -1,10 +1,13 @@
 package com.erichgamma.api.user;
 
 
+<<<<<<< HEAD:user/UserServiceImpl.java
+=======
 import com.erichgamma.api.common.AbstractService;
 import com.erichgamma.api.common.UtilServiceImpl;
 import com.erichgamma.api.enums.Messenger;
 
+>>>>>>> develop-1.1:com/erichgamma/api/user/UserServiceImpl.java
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -141,6 +144,14 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
+<<<<<<< HEAD:user/UserServiceImpl.java
+    public String test() {
+        return userRepository.test();
+    }
+
+    @Override
+=======
+>>>>>>> develop-1.1:com/erichgamma/api/user/UserServiceImpl.java
     public List<?> findUsers() throws SQLException {
         return userRepository.findUsers();
     }
@@ -151,7 +162,11 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
     @Override
+<<<<<<< HEAD:user/UserServiceImpl.java
+    public String delTable() throws SQLException {
+=======
     public Messenger delTable() throws SQLException {
+>>>>>>> develop-1.1:com/erichgamma/api/user/UserServiceImpl.java
         return userRepository.delTable();
     }
 
