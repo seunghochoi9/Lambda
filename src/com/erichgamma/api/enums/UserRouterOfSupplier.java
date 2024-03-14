@@ -1,4 +1,4 @@
-package com.erichgamma.api.enums;
-
-public class UserRouterOfSupplier {
-}
+//package com.erichgamma.api.enums;
+//
+//public class UserRouterOfSupplier {
+//}

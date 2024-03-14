@@ -12,31 +12,32 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public enum NavigationOfPredicate {
-    EXIT("exit", i -> {
+    EXIT("x", i -> {
         System.out.println("Exit");
         return false;
     }),
-    USER("user", i -> {
+    USER("u", i -> {
         try {
             UserView.main(i);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("userview: 테스트");
         return true;
     }),
 
-    BOARD("Board", i -> {
+    BOARD("b", i -> {
         BoardView.main(i);
         return true;
     }),
 
 
-    ACCOUNT("account", i -> {
+    ACCOUNT("ac", i -> {
         AccountView.main(i);
         return true;
     }),
 
-    CRAWLER("crawler", i-> {
+    CRAWLER("c", i-> {
         try {
             CrawlerView.main(i);
         } catch (IOException e) {
@@ -59,7 +60,7 @@ public enum NavigationOfPredicate {
     private final Predicate<Scanner> predicate;
 
     public static Boolean navigate(Scanner scanner){
-        System.out.println("0-Exit 1-UserView 2-BoardView 3-AccountView 4-CrawlerView");
+        System.out.println("x-Exit u-UserView b-BoardView ac-AccountView c-CrawlerView");
         String str = scanner.next();
         return Stream.of(values()).filter(i -> i.name.equals(str))
                 .findAny().orElse(NAVIGATION_ERROR).predicate.test(scanner);

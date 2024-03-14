@@ -9,35 +9,35 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public enum UserRouterOfPredicate {
-    EXIT("exit", i -> {
+    EXIT("exit", (scanner) -> {
         System.out.println("Exit");
         return false;
     }),
-    SAVE("save", i -> {
+    SAVE("save", (scanner) -> {
         try {
-            UserController.getInstance().save(i);
+            UserController.getInstance().save(scanner);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return true;
     }),
-    LOGIN("login", i -> {
-        UserController.getInstance().login(i);
+    LOGIN("login", (scanner) -> {
+        UserController.getInstance().login(scanner);
         return true;
     }),
-    FINDID("findId", i -> {
-        UserController.getInstance().getOne(i);
+    FINDID("findId", (scanner) -> {
+        UserController.getInstance().getOne(scanner);
         return true;
     }),
-    UPDATE("update", i -> {
-        UserController.getInstance().updatePassword(i);
+    UPDATE("update", (scanner) -> {
+        UserController.getInstance().updatePassword(scanner);
         return true;
     }),
-    DELET("del", i -> {
-        UserController.getInstance().delete(i);
+    DELETE("del", (scanner) -> {
+        UserController.getInstance().delete(scanner);
         return true;
     }),
-    LIST("ls", i -> {
+    LIST("ls", (scanner) -> {
         try {
             UserController.getInstance().findUsers();
         } catch (SQLException e) {
@@ -45,21 +45,19 @@ public enum UserRouterOfPredicate {
         }
         return true;
     }),
-    FINDNAME("findName", i -> {
-        UserController.getInstance().findUsersByName(i)
-                .forEach((j)-> { System.out.println(j);});
+    FINDNAME("findName", (scanner) -> {
+        UserController.getInstance().findUsersByName(scanner);
         return true;
     }),
-    FINDJOB("findJob", i -> {
-        UserController.getInstance().findUsersByJob(i)
-                .forEach((j)-> { System.out.println(j);});
+    FINDJOB("findJob", (scanner) -> {
+        UserController.getInstance().findUsersByJob(scanner);
         return true;
     }),
-    COUNT("count", i -> {
+    COUNT("count", (scanner) -> {
         UserController.getInstance().count();
         return true;
     }),
-    TOUCH("touch", i -> {
+    TOUCH("touch", (scanner) -> {
         try {
             UserController.getInstance().createTable();
         } catch (SQLException e) {
@@ -67,7 +65,7 @@ public enum UserRouterOfPredicate {
         }
         return true;
     }),
-    DELTABLE("rm", i -> {
+    DELTABLE("rm", (scanner) -> {
         try {
             UserController.getInstance().delTable();
         } catch (SQLException e) {
@@ -75,9 +73,9 @@ public enum UserRouterOfPredicate {
         }
         return true;
     }),
-    USERERROR("error", i -> {
+    USERERROR("error", (scanner) -> {
         System.out.println("input error");
-        return false;
+        return true;
     })
     ;
     private final String name;
@@ -86,9 +84,9 @@ public enum UserRouterOfPredicate {
 
 
     UserRouterOfPredicate(String name, Predicate<Scanner> predicate) {
-        this.name = name;
-        this.predicate = predicate;
-        this.controller = UserController.getInstance();
+            this.name = name;
+            this.predicate = predicate;
+            this.controller = UserController.getInstance();
     }
     public static Boolean routing(Scanner scanner) {
         System.out.println("[사용자메뉴]\n" +
@@ -106,7 +104,8 @@ public enum UserRouterOfPredicate {
                 "rm-테이블삭제\n" +
                 "");
         String msg = scanner.next();
-        return Stream.of(values()).filter(i -> i.name.equals(msg))
+        return Stream.of(values())
+                .filter(i -> i.name.equals(msg))
                 .findAny().orElse(USERERROR).predicate.test(scanner);
     }
 
