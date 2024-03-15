@@ -26,9 +26,6 @@ CREATE TABLE users (
     weight VARCHAR(20)
 );
 
-DROP TABLE stadium;
-show tables;
-
 select * from stadium;
 CREATE TABLE stadium(
   id INT AUTO_INCREMENT NOT NULL,

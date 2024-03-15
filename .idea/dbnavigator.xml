@@ -22,7 +22,18 @@ select * from team ORDER BY team_name;
 
 select * from player;
 select distinct POSITION FROM player;
-select iFNULL(POSITION, '--') FROM player;]]></console>
+select iFNULL(POSITION, '--') FROM player;
+
+insert into users(username, password, name, phone)
+values ('유저네임','비밀번호','네임', '번호');
+select * from users;
+
+CREATE TABLE com.erichgamma.api.menus(
+  id INT NOT NULL AUTO_INCREMENT,
+  item VARCHAR(20),
+  catagrey VARCHAR(20),
+  CONSTRAINT menus_pk PRIMARY KEY(id)
+);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -38,7 +49,9 @@ select iFNULL(POSITION, '--') FROM player;]]></console>
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/com/erichgamma/api/sql/soccer.sql" connection-id="f73093dd-60c0-4202-aefe-517f6f6805f4" session-id="MAIN" current-schema="erichgammadb" />
     <mapping file-url="file://$PROJECT_DIR$/src/com/erichgamma/api/sql/soccer-test.sql" connection-id="f73093dd-60c0-4202-aefe-517f6f6805f4" session-id="MAIN" current-schema="erichgammadb" />
+    <mapping file-url="file://$PROJECT_DIR$/src/com/erichgamma/api/sql/Menu.sql" connection-id="f73093dd-60c0-4202-aefe-517f6f6805f4" session-id="MAIN" current-schema="erichgammadb" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />

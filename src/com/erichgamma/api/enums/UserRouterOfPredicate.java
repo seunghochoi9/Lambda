@@ -1,9 +1,11 @@
 package com.erichgamma.api.enums;
 
 
+import com.erichgamma.api.menu.MenuController;
 import com.erichgamma.api.user.UserController;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -13,7 +15,7 @@ public enum UserRouterOfPredicate {
         System.out.println("Exit");
         return false;
     }),
-    Save("save", (scanner) -> {
+    Save("joi", (scanner) -> {
         try {
             UserController.getInstance().save(scanner);
         } catch (SQLException e) {
@@ -21,23 +23,23 @@ public enum UserRouterOfPredicate {
         }
         return true;
     }),
-    Login("login", (scanner) -> {
+    Login("log", (scanner) -> {
         UserController.getInstance().login(scanner);
         return true;
     }),
-    FindId("findId", (scanner) -> {
+    FindId("cat", (scanner) -> {
         UserController.getInstance().getOne(scanner);
         return true;
     }),
-    Update("update", (scanner) -> {
+    UpdatePW("ch-pw", (scanner) -> {
         UserController.getInstance().updatePassword(scanner);
         return true;
     }),
-    Delete("del", (scanner) -> {
+    Delete("rm", (scanner) -> {
         UserController.getInstance().delete(scanner);
         return true;
     }),
-    List("ls", (scanner) -> {
+    List("ls-a", (scanner) -> {
         try {
             UserController.getInstance().findUsers();
         } catch (SQLException e) {
@@ -45,15 +47,15 @@ public enum UserRouterOfPredicate {
         }
         return true;
     }),
-    FindName("findName", (scanner) -> {
+    FindName("ls-n", (scanner) -> {
         UserController.getInstance().findUsersByName(scanner);
         return true;
     }),
-    FindJob("findJob", (scanner) -> {
+    FindJob("ls-job", (scanner) -> {
         UserController.getInstance().findUsersByJob(scanner);
         return true;
     }),
-    Count("count", (scanner) -> {
+    Count("cnt", (scanner) -> {
         UserController.getInstance().count();
         return true;
     }),
@@ -65,7 +67,7 @@ public enum UserRouterOfPredicate {
         }
         return true;
     }),
-    DelTable("rm", (scanner) -> {
+    DelTable("deltable", (scanner) -> {
         try {
             UserController.getInstance().delTable();
         } catch (SQLException e) {
@@ -86,21 +88,9 @@ public enum UserRouterOfPredicate {
             this.name = name;
             this.predicate = predicate;
     }
-    public static Boolean routing(Scanner scanner) {
-        System.out.println("[사용자메뉴]\n" +
-                "x-Exit\n " +
-                "save-회원가입\n " +
-                "login-로그인\n " +
-                "findId-ID검색\n " +
-                "update-비번변경\n" +
-                "del-탈퇴\n " +
-                "ls-회원목록\n " +
-                "findName-이름검색\n" +
-                "findJob-직업검색\n" +
-                "count-회원수\n" +
-                "touch-테이블생성\n" +
-                "rm-테이블삭제\n" +
-                "");
+    public static Boolean routing(Scanner scanner) throws SQLException {
+        List<?> ls = MenuController.getInstance().returnAllMenus();
+        ls.forEach(i -> System.out.println(i));
         String msg = scanner.next();
         return Stream.of(values())
                 .filter(i -> i.name.equals(msg))

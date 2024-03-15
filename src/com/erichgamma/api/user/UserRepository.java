@@ -26,32 +26,38 @@ public class UserRepository {
 
     private Connection connection;
 
+    private PreparedStatement pstmt;
+
+    private ResultSet rs;
+
     private UserRepository() throws SQLException {
         connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/erichgammadb",
                 "erichgamma",
                 "erichgammadb");
+        pstmt = pstmt;
+        rs = rs;
     }
 
     public List<?> findUsers() throws SQLException {
         String sql = "select * from com.erichgamma.api.board";
-        PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet resultSet = pstmt.executeQuery();
-        if (resultSet.next()) {
+        pstmt = connection.prepareStatement(sql);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
             do {
                 System.out.println("-- inner ---");
                 System.out.printf("ID: %d\t Title: %s\t Content: %s\t Writer: %s\n",
-                        resultSet.getInt("id"),
-                        resultSet.getString("Title"),
-                        resultSet.getString("Content"),
-                        resultSet.getString("Writer"));
+                        rs.getInt("id"),
+                        rs.getString("Title"),
+                        rs.getString("Content"),
+                        rs.getString("Writer"));
                 System.out.println();
-            } while (resultSet.next());
+            } while (rs.next());
 
         } else {
             System.out.println("데이터가 없습니다.");
         }
-        resultSet.close();
+        rs.close();
         pstmt.close();
         connection.close();
         return null;

@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 public enum NavigationOfFunction {
-    Exit("x", i -> "x")
+    Exit("exit", i -> "x")
     ,
     User("u", i -> {
         try {
@@ -49,7 +49,7 @@ public enum NavigationOfFunction {
     }
 
     public static String navigate(Scanner scanner) {
-        System.out.println("x-Exit u-UserView b-BoardView ac-AccountView c-CrawlerView");
+        System.out.println("exit-Exit u-UserView b-BoardView ac-AccountView c-CrawlerView");
         String str = scanner.next();
         System.out.println("선택한 메뉴" + str);
         return Stream.of(values())
